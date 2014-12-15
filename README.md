@@ -1,4 +1,4 @@
 Official Vegas CMF page.
 ======================
 
-Check online version [http://cmf.vegas](here)
+Check online version [here](http://cmf.vegas)
