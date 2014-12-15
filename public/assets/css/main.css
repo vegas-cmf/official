@@ -1,0 +1,68 @@
+.twitter-timeline.twitter-timeline-rendered {
+    width: 100% !important;
+}
+
+#project-carousel .carousel-indicators {
+    bottom: 5px;
+}
+
+#project-carousel .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+#project-carousel .carousel-caption h3 {
+    color: #fff;
+}
+
+.carousel-control {
+    z-index: 20;
+}
+
+.carousel-control .control-left,
+.carousel-control .control-right {
+    position: absolute;
+    top: 65%;
+    z-index: 5;
+    display: inline-block;
+}
+
+.carousel-control .control-left {
+    left: 10%;
+}
+
+.carousel-control .control-right {
+    right: 10%;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
+}
+
+.footer {
+    border-top: 1px solid #e3e3e3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    background-color: #f5f5f5;
+    z-index: 999;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 12px;
+}
+

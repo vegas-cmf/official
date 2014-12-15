@@ -1,0 +1,30 @@
+[vegas-cloneable] .clonerBase {
+    display: none;
+}
+
+[vegas-cloneable] fieldset {
+    position: relative;
+}
+
+[vegas-cloneable] fieldset.form-control {
+    display: block;
+    background: transparent none;
+    box-shadow: none;
+    border: 0;
+    height: auto;
+}
+
+[vegas-cloneable] fieldset.form-control input + input {
+    margin-left: 10px;
+}
+
+[vegas-cloneable] a.cloner-row-remove {
+    background: url("../../img/common/i-del.png") no-repeat;
+    display: block;
+    height: 10px;
+    width: 10px;
+    right: 5px;
+    text-indent: -1000000px;
+    position: absolute;
+    z-index: 1;
+}

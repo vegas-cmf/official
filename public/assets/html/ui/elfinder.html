@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>File manager</title>
+    <!-- jQuery and plugins -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/ui-lightness/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/elfinder/css/elfinder.min.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/elfinder/css/theme.css" type="text/css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-browser/0.0.6/jquery.browser.min.js" type="text/javascript"></script>
+    <script src="/assets/js/lib/elfinder/elfinder.min.js" type="text/javascript"></script>
+    <script src="/assets/js/lib/elfinder/i18n/elfinder.nl.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            function getUrlParam(paramName) {
+                var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+                var match = window.location.search.match(reParam) ;
+
+                return (match && match.length > 1) ? match[1] : '' ;
+            }
+            var funcNum = getUrlParam('CKEditorFuncNum');
+            var elf = $('#elfinder').elfinder({
+                url : '/file-manager',
+                getFileCallback : function(file) {
+                    window.opener.CKEDITOR.tools.callFunction(funcNum, file);
+                    window.close();
+                },
+                resizable: false
+            }).elfinder('instance');
+        });
+    </script>
+</head>
+<body>
+<div id="elfinder"></div>
+</body>
+</html>

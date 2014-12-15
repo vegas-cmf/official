@@ -1,0 +1,9 @@
+[data-jq-upload-preview-stored] {
+    float:left;
+    margin-bottom:10px;
+    max-width: 100%;
+}
+
+[data-jq-upload-preview-stored] p {
+    margin:0px !important;
+}

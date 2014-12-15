@@ -1,0 +1,28 @@
+{
+    "items": [
+        {
+            "name": "Text",
+            "namespace": "/Vegas/Forms/Builder/Text"
+        },
+        {
+            "name": "Password",
+            "namespace": "/Vegas/Forms/Builder/Password"
+        },
+        {
+            "name": "Email",
+            "namespace": "/Vegas/Forms/Builder/Email"
+        },
+        {
+            "name": "RichTextArea",
+            "namespace": "/Vegas/Forms/Builder/RichTextArea"
+        },
+        {
+            "name": "Select",
+            "namespace": "/Vegas/Forms/Builder/Select"
+        },
+        {
+            "name": "Datepicker",
+            "namespace": "/Vegas/Forms/Builder/Datepicker"
+        }
+    ]
+}

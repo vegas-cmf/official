@@ -1,0 +1,25 @@
+{
+  "name": "Vegas Forms Assets",
+  "version": "1.0.0",
+  "authors": [
+    "Arkadiusz Ostrycharz <arkadiusz.ostrycharz@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "com",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "multiselect": "*",
+    "ckeditor": "#full/4.3.3",
+    "eonasdan-bootstrap-datetimepicker": "3.0",
+    "mjaalnir-bootstrap-colorpicker": "2.*",
+    "html5sortable": "https://github.com/farhadi/html5sortable.git",
+    "alertify": "*"
+  }
+}
