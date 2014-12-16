@@ -8,6 +8,7 @@ Requirements
 1. PHP >= 5.4
 
 2. Phalcon extension
+
     The **Vegas CMF** based on the **Phalcon** framework (in version 1.3), which works as php extension.
     Check [http://docs.phalconphp.com/en/latest/reference/install.html](http://docs.phalconphp.com/en/latest/reference/install.html) for more information.
 
