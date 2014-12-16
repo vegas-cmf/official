@@ -17,8 +17,7 @@
                 <thead>
                 <tr>
                     <th>{{ i18n._('E-mail') }}</th>
-                    <th>{{ i18n._('First name') }}</th>
-                    <th>{{ i18n._('Last name') }}</th>
+                    <th>{{ i18n._('Name') }}</th>
                     <th>{{ i18n._('Crated at') }}</th>
                     <th class="options">&nbsp;</th>
                 </tr>
@@ -28,8 +27,7 @@
                     {% for item in page.items %}
                         <tr>
                             <td>{{ item.email }}</td>
-                            <td>{{ item.first_name }}</td>
-                            <td>{{ item.last_name }}</td>
+                            <td>{{ item.name }}</td>
                             <td>{{ date('d-m-Y', item.created_at) }}</td>
                             <td align="right">
                                 <a class="btn btn-sm btn-default" href="{{ url.get(['for':'admin/user', 'action': 'edit', 'params':item._id]) }}">{{ i18n._("Update")}}</a>

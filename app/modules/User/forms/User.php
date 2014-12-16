@@ -11,19 +11,12 @@ class User extends \Vegas\Forms\Form
 {
     public function initialize()
     {
-        $firstName = new Text('first_name');
-        $firstName->setLabel('First name');
-        $firstName->addValidator(new PresenceOf(array(
-            'message' => 'First name is required'
+        $name = new Text('name');
+        $name->setLabel('Name');
+        $name->addValidator(new PresenceOf(array(
+            'message' => 'Name is required'
         )));
-        $this->add($firstName);
-
-        $lastName = new Text('last_name');
-        $lastName->setLabel('Last name');
-        $lastName->addValidator(new PresenceOf(array(
-            'message' => 'Last name is required'
-        )));
-        $this->add($lastName);
+        $this->add($name);
 
         $email = new Text('email');
         $email->setLabel('Email');
