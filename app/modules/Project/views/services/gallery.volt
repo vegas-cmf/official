@@ -12,7 +12,7 @@
                 {% endif %}
                 <div class="carousel-caption">
                     <h3>{{ project.name }}</h3>
-                    <p><a href="{{ project.url }}">{{ project.url }}</a></p>
+                    <p><a href="{{ project.url }}" target="_blank">{{ project.url }}</a></p>
                 </div>
             </div>
         {% endfor %}
