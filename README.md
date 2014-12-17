@@ -38,7 +38,4 @@ How to setup page
     php cli/cli.php app:user:user create -e=user@vegasdemo.com -p=pa55w0rd -n="Vegas User"
     ```
 
-After those steps you can check project by starting local php server:
-```
-php -S 0.0.0.0:8080 -t public/ public/index.php
-```
+5. For virtual host configuration check: [http://vegas-cmf.github.io/1.0/getting-started.html](http://vegas-cmf.github.io/1.0/getting-started.html)
