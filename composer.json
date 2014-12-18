@@ -13,10 +13,6 @@
         {
             "type" : "git",
             "url" : "https://github.com/phalcon/phalcon-devtools.git"
-        },
-        {
-            "type" : "git",
-            "url" : "https://github.com/arius86/core.git"
         }
     ],
     "require": {
@@ -27,7 +23,7 @@
         "vegas-cmf/session" : "1.0.*",
         "vegas-cmf/auth" : "1.0.*",
         "vegas-cmf/forms": "1.1-beta",
-        "vegas-cmf/core": "1.1.x-dev",
+        "vegas-cmf/core": "1.1-beta",
         "vegas-cmf/media": "1.1.x-dev",
         "knplabs/github-api": "1.2.*",
         "spekkionu/wideimage": "dev-master"

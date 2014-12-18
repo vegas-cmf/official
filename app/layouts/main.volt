@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Amsterdam Standard Vegas Team">
 
-    <title>Vegas CMF Official</title>
+    <title>Vegas Content Management Framework - official page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url.get(['for': 'root']) }}">Vegas CMF</a>
+            <a class="navbar-brand" href="{{ url.get(['for': 'root']) }}">cmf.vegas</a>
             <button data-target="#navbar-main" data-toggle="collapse" type="button" class="navbar-toggle">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

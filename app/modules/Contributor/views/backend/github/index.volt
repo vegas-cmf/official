@@ -41,7 +41,6 @@
                 {% endif %}
                 </tbody>
             </table>
-            {{ pagination(page) }}
         </div>
     </div>
 </div>
