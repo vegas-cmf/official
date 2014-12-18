@@ -1,7 +1,7 @@
 Official Vegas CMF page.
 ======================
 
-Check online version [here](http://vegas.amsterdamstandard.pl)
+Check online version [here](http://cmf.vegas)
 
 Requirements
 ------------
