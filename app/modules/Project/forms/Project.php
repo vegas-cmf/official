@@ -24,7 +24,7 @@ class Project extends \Vegas\Forms\Form
         $image = new Upload('image');
         $image->setModel(new \File\Models\File());
         $image->setPreviewSize(array('width' => 100, 'height' => 100));
-        $image->setAssetsManager($this->assets);
+        $image->getDecorator()->setTemplateName('jquery');
         $image->setUploadUrl($this->url->get([
             'for' => 'admin/project',
             'action' => 'upload'
