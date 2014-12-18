@@ -24,7 +24,7 @@
         "vegas-cmf/auth" : "1.0.*",
         "vegas-cmf/forms": "1.1-beta",
         "vegas-cmf/core": "1.1-beta",
-        "vegas-cmf/media": "1.1.x-dev",
+        "vegas-cmf/media": "1.1-beta",
         "knplabs/github-api": "1.2.*",
         "spekkionu/wideimage": "dev-master"
     },
