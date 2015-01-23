@@ -12,7 +12,7 @@
 
 namespace User\Tasks;
 
-class UserTask extends \Vegas\Cli\Task
+class UserTask extends \Vegas\Cli\TaskAbstract
 {
 
     /**
@@ -20,7 +20,7 @@ class UserTask extends \Vegas\Cli\Task
      *
      * @return mixed
      */
-    public function setOptions()
+    public function setupOptions()
     {
         $action = new \Vegas\Cli\Task\Action('create', 'Create user account');
 
@@ -63,4 +63,3 @@ class UserTask extends \Vegas\Cli\Task
         }
     }
 }
- 
