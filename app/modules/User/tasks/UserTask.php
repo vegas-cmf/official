@@ -55,7 +55,7 @@ class UserTask extends \Vegas\Cli\TaskAbstract
             }
 
             $this->putSuccess('User created');
-            $this->pubObject($user->toArray());
+            $this->putObject($user->toArray());
 
             $this->putText('Done.');
         } else {
