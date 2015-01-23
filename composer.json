@@ -22,8 +22,8 @@
         "phalcon/incubator": "dev-master",
         "vegas-cmf/session" : "1.0.*",
         "vegas-cmf/auth" : "1.0.*",
-        "vegas-cmf/forms": "1.1-beta",
-        "vegas-cmf/core": "1.1-beta",
+        "vegas-cmf/forms": "1.1-rc0",
+        "vegas-cmf/core": "1.1-rc0",
         "vegas-cmf/media": "1.1-beta",
         "knplabs/github-api": "1.2.*",
         "spekkionu/wideimage": "dev-master"

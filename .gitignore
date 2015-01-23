@@ -32,7 +32,8 @@ composer.lock
 cache/[^\.]*
 app/config/modules.php
 app/config/services.php
-app/config/mailers.php
 app/config/config.php
+
+public/uploads/[^\.]*
 
 tests/config.php

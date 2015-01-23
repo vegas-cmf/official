@@ -48,8 +48,8 @@ class ProjectController extends CrudUploadAbstract
             $mapped = $record->readMapped('image');
 
             MediaHelper::moveFilesFrom($mapped);
-            MediaHelper::generateThumbnailsFrom((array)$mapped, ['width' => 600, 'height' => 300]);
-        } catch(Exception $e) {
+            MediaHelper::generateThumbnailsFrom($mapped, ['width' => 600, 'height' => 300]);
+        } catch(\Exception $e) {
             $this->flash->error($e->getMessage());
         }
     }
