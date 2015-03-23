@@ -29,4 +29,4 @@ class Bootstrap extends \Vegas\Mvc\Bootstrap
         $mappingManager->add(new Json());
         $mappingManager->add(new \Vegas\Media\Db\Mapping\File(new \File\Models\File()));
     }
-} 
+}
