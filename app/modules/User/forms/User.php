@@ -3,7 +3,6 @@ namespace User\Forms;
 
 use Vegas\Forms\Element\Password;
 use Vegas\Forms\Element\Text;
-use Vegas\Forms\Element\Select;
 use Vegas\Validation\Validator\Email;
 use Vegas\Validation\Validator\PresenceOf;
 

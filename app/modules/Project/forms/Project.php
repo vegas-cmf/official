@@ -1,7 +1,6 @@
 <?php
 namespace Project\Forms;
 
-use Vegas\Forms\Element\Browser;
 use Vegas\Forms\Element\Text;
 use Vegas\Forms\Element\Upload;
 use Vegas\Validation\Validator\PresenceOf;
