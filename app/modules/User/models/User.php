@@ -16,5 +16,18 @@ use Auth\Models\BaseUser;
 
 class User extends BaseUser
 {
+    public function validation()
+    {
+        $object = $this->findFirst([
+            [
+                'email' => $this->email
+            ]
+        ]);
 
+        if ($object && (string)$object->_id !== (string)$this->_id) {
+            throw new \Vegas\Exception('There is already an user with the same e-mail address.');
+        }
+
+        return true;
+    }
 } 
