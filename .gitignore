@@ -37,3 +37,4 @@ app/config/config.php
 public/uploads/[^\.]*
 
 tests/config.php
+/nbproject
