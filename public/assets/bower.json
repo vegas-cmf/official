@@ -19,7 +19,11 @@
     "ckeditor": "#full/4.3.3",
     "eonasdan-bootstrap-datetimepicker": "3.0",
     "mjaalnir-bootstrap-colorpicker": "2.*",
+    "jquery": "~1.11.1",
+    "jquery-ui": "~1.10.4",
     "html5sortable": "https://github.com/farhadi/html5sortable.git",
+    "nestedSortable": "https://github.com/ilikenwf/nestedSortable.git#2.0alpha",
+    "markdown-editor": "https://github.com/jbt/markdown-editor.git",
     "alertify": "*"
   }
 }

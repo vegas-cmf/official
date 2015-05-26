@@ -49,6 +49,20 @@
                     <li><a href="{{ url.get(['for': 'admin/project', 'action': 'index']) }}">{{ i18n._('Projects') }}</a></li>
                     <li><a href="{{ url.get(['for': 'admin/contributor', 'action': 'index']) }}">{{ i18n._('Contributors') }}</a></li>
                     <li><a href="{{ url.get(['for': 'admin/user', 'action': 'index']) }}">{{ i18n._('Users') }}</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                            {{ i18n._('Documentation') }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                            <li role="presentation" class="dropdown-header">{{ i18n._('Frontend') }}</li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url.get(['for': 'documentation', 'action': 'viewer']) }}">{{ i18n._('Documentation') }}</a></li>
+                            <li role="presentation" class="dropdown-header">{{ i18n._('Backend') }}</li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url.get(['for': 'admin/documentation/version', 'action': 'index']) }}">{{ i18n._('Versions') }}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url.get(['for': 'admin/documentation/category', 'action': 'index']) }}">{{ i18n._('Categories') }}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url.get(['for': 'admin/documentation/article', 'action': 'index']) }}">{{ i18n._('Articles') }}</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ url.get(['for': 'logout']) }}">{{ i18n._('Logout') }}</a></li>
                 {% else %}
                     <li><a href="{{ url.get(['for': 'login']) }}">{{ i18n._('Login') }}</a></li>
