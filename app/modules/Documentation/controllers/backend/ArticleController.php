@@ -23,11 +23,14 @@ class ArticleController extends CrudAbstract
     protected $formName = 'Documentation\Forms\Article';
     protected $modelName = 'Documentation\Models\Article';
     
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->view->articleService = $this->serviceManager->getService('documentation:article');
+        $this->view->categoryService = $this->serviceManager->getService('documentation:category');
     }
     
-    public function archivedAction($id) {
+    public function archivedAction($id)
+    {
         $article = \Documentation\Models\Article::findById($id);
         $this->view->article = $article;
 
@@ -47,19 +50,18 @@ class ArticleController extends CrudAbstract
         $this->view->page = $paginator->getPaginate();
     }
     
-    public function showArchivedAction($id) {
+    public function showArchivedAction($id)
+    {
         parent::showAction($id);
     }
     
-    public function editContentAction($id) {
+    public function editContentAction($id)
+    {
         $this->view->setLayout('editor');
         if(!empty($id)) {
             $article = $this->serviceManager->getService('documentation:article')->getArticle($id);
-            if($article) {
-                $this->view->article = $article;
-            }
         }
-        
+        $this->view->article = $article;
         if (!$article) {
             $this->throw404($this->_('Page not found.'));
         }
@@ -71,22 +73,30 @@ class ArticleController extends CrudAbstract
             $this->throw404($this->_('Page not found.'));
         }
         
-        $postData = $this->request->getPost();
-        
         $message = 'Failed';
         $updated = false;
         
-        if(isset($postData['article'],$postData['content'])) {
-            if(!isset($postData['archival'])) $postData['archival'] = 0;
-            $updateStatus = $this->serviceManager->getService('documentation:article')->updateContent($postData['article'],$postData['content'],$postData['contentRendered'],$postData['archival']);
+        if($this->request->hasPost('article') && $this->request->hasPost('content')) {
+            $updateStatus = $this->serviceManager->getService('documentation:article')->updateContent(
+                $this->request->getPost('article','string',null),
+                $this->request->getPost('content',null,''),
+                $this->request->getPost('contentRendered',null,''),
+                $this->request->getPost('archival',null,0)
+            );
             if($updateStatus!=false) {
-                if($postData['archival']) $message = 'Archival copy made';
-                else $message = 'Updated';
+                if($this->request->getPost('archival',null,0)) {
+                    $message = 'Archival copy made';
+                } else {
+                    $message = 'Updated';
+                }
                 $updated = true;
             }
         }      
         
-        if(!$updated) $this->response->setStatusCode(500, $message);
+        if(!$updated) {
+            $this->response->setStatusCode(500, $message);
+        }
+        
         return $this->jsonResponse(['message' => $message, 'status' => $updated]);
     }
     
@@ -101,20 +111,26 @@ class ArticleController extends CrudAbstract
         $updated = 0;
         $failed = 0;
         $position = 0;
-        if(!empty($postData)) foreach($postData as $category => $articles) {
-            foreach($articles as $article) {
-                $position++;
-                $updateStatus = $this->serviceManager->getService('documentation:article')->updatePosition($article, $position);
-                if($updateStatus!=false) $updated++;
-                else $failed++;
+        if(!empty($postData)) {
+            foreach($postData as $category => $articles) {
+                foreach($articles as $article) {
+                    $position++;
+                    $updateStatus = $this->serviceManager->getService('documentation:article')->updatePosition($article, $position);
+                    if($updateStatus!=false) {
+                        $updated++;
+                    } else {
+                        $failed++;
+                    }
+                }
             }
         }
         
         $message = $updated.' '.$this->i18n->_('articles updated').' '.$failed.' '.$this->i18n->_('failed');
         
-        $status = ($failed==0);
-        if(!$status) $this->response->setStatusCode(500, $message);
-        
-        return $this->jsonResponse(['message' => $message, 'status' => $status]);
+        if($failed!=0) {
+            $this->response->setStatusCode(500, $message);
+            return $this->jsonResponse();
+        }
+        return $this->jsonResponse(['message' => $message]);
     }
 }

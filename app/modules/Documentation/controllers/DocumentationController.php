@@ -27,17 +27,22 @@ class DocumentationController extends ControllerAbstract
         $this->view->activeArticle = '';
         
         $articleService = $this->serviceManager->getService('documentation:article');
+        $categoryService = $this->serviceManager->getService('documentation:category');
         
-        $versions = $articleService->getAllVersions();
+        $versions = $this->serviceManager->getService('documentation:version')->getAll();
         $this->view->versions = $versions;
-        if(in_array($version,$versions)) $this->view->versionSlug = $version;
+        if(in_array($version,$versions)) {
+            $this->view->versionSlug = $version;
+        }
         
-        $categories = $articleService->getAllCategories('array');
+        $categories = $categoryService->getAll('array');
         $this->view->categories = $categories;
         foreach($categories as $c) {
             if($c['slug'] == $category) {
                 $this->view->categorySlug = $category;
-                if($article) $activeArticle = $articleService->getArticleBySlug($version,$category,$article);
+                if($article) {
+                    $activeArticle = $articleService->getArticleBySlug($version,$category,$article);
+                }
             }
         }
 
@@ -48,13 +53,13 @@ class DocumentationController extends ControllerAbstract
         $this->view->activeArticle = $activeArticle;
         $this->view->articleSlug = $article;
         $this->view->articleService = $articleService;
+        $this->view->categoryService = $categoryService;
         $this->view->searchQuery = $this->request->get('search');
     }
     
     public function pdfAction($versionSlug)
     {
-        $articleService = $this->serviceManager->getService('documentation:article');
-        $version = $articleService->getVersionBySlug($versionSlug);
+        $version = $this->serviceManager->getService('documentation:version')->getObjectBySlug($versionSlug);
         if($version) {
             $this->view->disable();
             $this->response->setHeader('Content-Type', 'application/pdf');
@@ -62,11 +67,13 @@ class DocumentationController extends ControllerAbstract
             $renderParams = [
                 'version' => $version,
                 'templateName'=>'versionAsPdf',
-                'articleService' => $articleService
+                'serviceManager' => $this->serviceManager
             ];
 
             $filename = 'vegas_'.$versionSlug.'_documentation.pdf';
             $this->serviceManager->getService('documentation:pdf')->renderPdf($filename,$renderParams);
+        } else {
+            $this->throw404($this->_('Page not found.'));
         }
     }
 }

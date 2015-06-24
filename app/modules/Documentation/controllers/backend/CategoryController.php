@@ -30,7 +30,8 @@ class CategoryController extends CrudAbstract
         'slug' => 'Slug'
     ];
     
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->initializeScaffolding();
 
         $model = new CategoryModel();
@@ -45,23 +46,27 @@ class CategoryController extends CrudAbstract
             $this->throw404($this->_('Page not found.'));
         }
         
-        $postData = $this->request->getPost();
-        
         $updated = 0;
         $failed = 0;
         $position = 0;
-        if(is_array($postData['category'])) foreach($postData['category'] as $key => $parent) {
-            $position++;
-            $updateStatus = $this->serviceManager->getService('documentation:category')->updatePosition($key, $position, $parent);
-            if($updateStatus!=false) $updated++;
-            else $failed++;
+        $category = $this->request->getPost('category');
+        if(is_array($category)) {
+            foreach($category as $key => $parent) {
+                $position++;
+                $updateStatus = $this->serviceManager->getService('documentation:category')->updatePosition($key, $position, $parent);
+                if($updateStatus!=false) {
+                    $updated++;
+                } else {
+                    $failed++;
+                }
+            }
         }
-        
         $message = $updated.' '.$this->i18n->_('categories updated').' '.$failed.' '.$this->i18n->_('failed');
         
-        $status = ($failed==0);
-        if(!$status) $this->response->setStatusCode(500, $message);
-        
-        return $this->jsonResponse(['message' => $message, 'status' => $status]);
+        if($failed!=0) {
+            $this->response->setStatusCode(500, $message);
+            return $this->jsonResponse();
+        }
+        return $this->jsonResponse(['message' => $message]);
     }
 }

@@ -28,7 +28,16 @@ class Article extends CollectionAbstract
     public $archival = false;
     public $parent = null;
 
-    private $archiveFields = ['title','version','category','content', 'contentRendered', 'slug','published','position'];
+    private $archiveFields = [
+        'title',
+        'version',
+        'category',
+        'content',
+        'contentRendered',
+        'slug',
+        'published',
+        'position'
+    ];
     
     public function getSource()
     {
@@ -37,25 +46,32 @@ class Article extends CollectionAbstract
     
     public function beforeSave()
     {
+        $this->removeNotSupportedVersions();
         $this->generateSlug($this->title);
     }
     
     public function beforeUpdate()
     {
         parent::beforeUpdate();
-        if(!$this->archival) $this->makeCopyToArchive();
+        if(!$this->archival) {
+            $this->makeCopyToArchive();
+        }
     }
     
     public function beforeDelete()
     {
-        if(!$this->archival) $this->makeCopyToArchive();
+        if(!$this->archival) {
+            $this->makeCopyToArchive();
+        }
     }
     
     public function makeCopyToArchive($previousState = 1)
     {
-        if($previousState) $source = Article::findById($this->_id);
-        else $source = $this;
-        
+        if($previousState) {
+            $source = Article::findById($this->_id);
+        } else {
+            $source = $this;
+        }
         $articleCopy = new Article();
         
         foreach($this->archiveFields as $key){
@@ -67,5 +83,13 @@ class Article extends CollectionAbstract
         $articleCopy->parent = ''.$this->_id;
         
         return $articleCopy->save();
+    }
+    
+    private function removeNotSupportedVersions() {
+        $versionArr = [];
+        foreach($this->version as $key => $value) {
+            if($value == 1) $versionArr[$key] = $value;
+        }
+        $this->version = $versionArr;
     }
 }

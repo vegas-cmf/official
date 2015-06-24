@@ -9,7 +9,7 @@
     {% if versionSlug is defined and versionSlug != '' %}
         <li>{{ versionSlug }}</li>
         {% if activeArticle and activeArticle.category %}
-            {% for parent in articleService.getCategoryParentsNames(activeArticle.category) %}
+            {% for parent in categoryService.getParentsNames(activeArticle.category) %}
                     <li>{{parent}}</li>
             {% endfor %}
             <li>{{categories[activeArticle.category]['name']}}</li>
@@ -44,10 +44,12 @@
             [ <a href="{{ url.get(['for': 'documentation/pdf', 'params': versionId]) }}">download PDF</a> ]
             {% for categoryId, categoryArray in categories %}
                 {% set numberOfParents = (categoryArray['parents'] | length)-1 %}
-                {% if articles[categoryId] is defined %}
+                
+                {% if articleService.countArticles(categoryId,articles) %}
                     <div class="row">
                         <div class="col-lg-{{12-numberOfParents}} col-lg-offset-{{numberOfParents}}">
                             <h5>{{categoryArray['name']}}</h5>
+                            {% if articles[categoryId] is defined %}
                             <ul>
                                 {% for article in articles[categoryId] %}
                                     <li>
@@ -57,6 +59,7 @@
                                     </li>
                                 {% endfor %}
                             </ul>
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}
@@ -71,11 +74,11 @@
         {% if searchResults %}
             <ul>
             {% for article in searchResults %}
-                {% set category = articleService.getCategory(article.category) %}
+                {% set category = categoryService.getObject(article.category) %}
                 {% if versionSlug != '' %}
                     {% set articleVersionSlug = versionSlug %}
                 {% else %}
-                    {% set articleVersionSlug = articleService.getLastVersionSlug(article.version) %}
+                    {% set articleVersionSlug = articleService.getLastConnectedVersionSlug(article.version) %}
                 {% endif %}
                 <li>
                     <a href="{{ url.get(['for': 'documentation', 'action': 'viewer']) }}{{articleVersionSlug}}/{{category.slug}}/{{article.slug}}">

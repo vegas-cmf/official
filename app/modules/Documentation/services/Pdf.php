@@ -35,7 +35,9 @@ class Pdf extends \Vegas\DI\Service\ComponentAbstract
     {
         $params = array_merge($this->params, $params);
 
-        if(isset($params['templateName'])) $this->getRenderer()->setTemplateName($params['templateName']);
+        if(isset($params['templateName'])) {
+            $this->getRenderer()->setTemplateName($params['templateName']);
+        }
         $content = $this->render($params);
         
         set_error_handler('\\Documentation\\Services\\Exception\\mPDFErrorHandler::error');

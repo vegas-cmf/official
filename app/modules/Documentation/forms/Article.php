@@ -27,7 +27,7 @@ class Article extends \Vegas\Forms\Form
         $field->addValidator(new PresenceOf());
         $this->add($field);
         
-        $versions = $this->serviceManager->get('documentation:article')->getAllVersions();
+        $versions = $this->serviceManager->get('documentation:version')->getAll();
         foreach($versions as $id => $versionId) {
             $field = new Select('version['.$id.']');
             $field->setLabel($this->i18n->_('Concerns ver. '.$versionId));
@@ -36,7 +36,7 @@ class Article extends \Vegas\Forms\Form
             $this->add($field);
         }
         
-        $categories = $this->serviceManager->get('documentation:article')->getAllCategories('&nbsp;&nbsp;');
+        $categories = $this->serviceManager->get('documentation:category')->getAll('&nbsp;&nbsp;');
         $field = new Select('category', $categories, ['useEmpty' => true]);
         $field->setLabel($this->i18n->_('Category'));
         $field->addValidator(new PresenceOf());

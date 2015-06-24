@@ -19,7 +19,7 @@
             {% set articles = articleService.getAllArticles(false) %}
             {% if(articles) %}
                 {% for category, cArticles in articles %}
-                <h4>{{ articleService.getCategoryPath(category) }}</h4>
+                <h4>{{ categoryService.getPath(category) }}</h4>
                 <table class="table table-hover sortable" data-category="{{category}}">
                     <thead>
                                 <tr>
@@ -35,7 +35,7 @@
                             <td>{{ item.title }}</td>
                                 <td>{{ date('d-m-Y', item.created_at) }}</td>
                                 <td>
-                                    {% for vKey, version in articleService.getSupportedVersions(item.version) %}
+                                    {% for vKey, version in articleService.getConnectedVersions(item.version) %}
                                         {% if vKey > 0 %},&nbsp;{% endif %}{{ version.version_id }}
                                     {% endfor %}
                                 </td>

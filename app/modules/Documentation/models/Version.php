@@ -21,7 +21,8 @@ class Version extends CollectionAbstract
     public $description;
     public $created_at;
 
-    public function getSource() {
+    public function getSource()
+    {
         return 'documentation_version';
     }
     
