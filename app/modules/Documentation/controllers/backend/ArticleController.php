@@ -80,7 +80,7 @@ class ArticleController extends CrudAbstract
             $updateStatus = $this->serviceManager->getService('documentation:article')->updateContent(
                 $this->request->getPost('article','string',null),
                 $this->request->getPost('content',null,''),
-                $this->request->getPost('contentRendered',null,''),
+                $this->request->getPost('content_rendered',null,''),
                 $this->request->getPost('archival',null,0)
             );
             if($updateStatus!=false) {

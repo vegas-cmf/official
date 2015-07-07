@@ -53,7 +53,7 @@
         <a href="{{ url.get(['for': router.getMatchedRoute().getName(), 'action':'editContent', 'params': record._id]) }}" class="btn pull-right">{{ i18n._('Content editor') }}</a>
         <h3>{{ i18n._('Preview') }}</h3>
         <div class="markdown-view">
-            {{record.contentRendered}}
+            {{record.content_rendered}}
         </div>
     </div>
 </div>

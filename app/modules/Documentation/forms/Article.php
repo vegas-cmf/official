@@ -54,7 +54,7 @@ class Article extends \Vegas\Forms\Form
         $field->setAttribute('readonly', 'true');
         $this->add($field);
         
-        $field = new TextArea('contentRendered');
+        $field = new TextArea('content_rendered');
         $field->setAttribute('class', 'form-control');
         $field->setAttribute('readonly', 'true');
         $field->setAttribute('style', 'display:none;');

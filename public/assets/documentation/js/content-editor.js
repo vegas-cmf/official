@@ -188,7 +188,7 @@ var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
                 "article": articleId,
                 "archival": archival,
                 "content": code,
-                "contentRendered": contentRendered
+                "content_rendered": contentRendered
             }
         }).done(function (data) {
             numberOfChanges = 0;

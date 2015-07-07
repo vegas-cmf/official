@@ -20,8 +20,7 @@ class Article extends CollectionAbstract
     public $version;
     public $category;
     public $content;
-    public $contentRendered;
-    
+    public $content_rendered;
     public $slug;
     public $published = false;
     public $position;
@@ -33,7 +32,7 @@ class Article extends CollectionAbstract
         'version',
         'category',
         'content',
-        'contentRendered',
+        'content_rendered',
         'slug',
         'published',
         'position'

@@ -45,7 +45,7 @@ class Article implements InjectionAwareInterface
         $article = $this->getArticle($id);
         if(!empty($article)) {
             $article->content = $content;
-            $article->contentRendered = $contentRendered;
+            $article->content_rendered = $contentRendered;
             if($archival) {
                 return $article->makeCopyToArchive(0);
             }

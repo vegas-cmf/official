@@ -43,7 +43,7 @@
         {% for article in articleGroup %}
         <h3>{{article.title}}</h3>
         <hr/>
-        <div class="markdown-view">{{article.contentRendered}}</div>
+        <div class="markdown-view">{{article.content_rendered}}</div>
         {% endfor %}
         {% endfor %}
     </div>

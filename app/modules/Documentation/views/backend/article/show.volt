@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="markdown-view">
-                {{record.contentRendered}}
+                {{record.content_rendered}}
             </div>
             <a href="{{ url.get(['for': router.getMatchedRoute().getName(), 'action':'index']) }}" class="btn pull-right">{{ i18n._('Back to overview') }}</a>
             <a href="{{ url.get(['for': router.getMatchedRoute().getName(), 'action':'editContent', 'params': record._id]) }}" class="btn pull-right">{{ i18n._('Edit content') }}</a>

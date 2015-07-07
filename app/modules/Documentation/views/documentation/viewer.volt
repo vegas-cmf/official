@@ -93,6 +93,6 @@
     {% elseif activeArticle %}
         <h3>{{activeArticle.title}}</h3>
         <hr/>
-        <div class="markdown-view">{{activeArticle.contentRendered}}</div>
+        <div class="markdown-view">{{activeArticle.content_rendered}}</div>
     {% endif %}
 </div>

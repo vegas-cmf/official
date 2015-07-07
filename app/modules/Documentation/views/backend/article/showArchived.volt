@@ -14,7 +14,7 @@
             <h4>{{ i18n._('Preview') }}</h4>
             <hr/>
             <div class="markdown-view">
-                {{record.contentRendered}}
+                {{record.content_rendered}}
             </div>
             <br/>
             <h4>{{ i18n._('Plaintext') }}</h4>
