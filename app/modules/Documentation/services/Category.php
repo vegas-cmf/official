@@ -21,7 +21,7 @@ class Category
     
     public function updatePosition($id, $position, $parent)
     {
-        $category = $this->getObject($id);
+        $category = $this->retrieveById($id);
         if(!empty($category)) {
             $category->position = $position;
             $category->parent = $parent;
@@ -30,13 +30,13 @@ class Category
         return false;
     }
     
-    public function getObject($id)
+    public function retrieveById($id)
     {        
         $category = CategoryModel::findById($id);
         return $category;
     }
     
-    public function getObjectBySlug($slug)
+    public function retrieveBySlug($slug)
     {
         $category = CategoryModel::findFirst([['slug' => trim($slug)]]);
         return $category;
@@ -52,10 +52,10 @@ class Category
         if(!$id || $id == 'null') {
             return $parents;
         }
-        $category = $this->getObject((string) $id);
+        $category = $this->retrieveById((string) $id);
         $parents[] = $category->parent;
         if($category->parent && $category->parent != 'null') {
-            $parents = $this->getParents($category->parent,$parents);
+            $parents = $this->getParents($category->parent, $parents);
         }
         return $parents;
     }
@@ -66,7 +66,7 @@ class Category
         $parentsNames = [];
         foreach($parentsIds as $parentId) {
             if($parentId != 'null') {
-                $category = $this->getObject($parentId);
+                $category = $this->retrieveById($parentId);
                 if($category) {
                     $parentsNames[] = $category->name;
                 }
@@ -85,7 +85,7 @@ class Category
         if(!$id || $id == 'null') {
             return '';
         }
-        $category = $this->getObject($id);
+        $category = $this->retrieveById($id);
         if(!$category) {
             return '';
         }
@@ -93,7 +93,7 @@ class Category
         $parentsPath = $category->name;
         foreach($parents as $key => $parent) {
             if($parent && $parent!='null') {
-                $parent = $this->getObject($parent);
+                $parent = $this->retrieveById($parent);
                 if($parent) {
                     $parentsPath = $parent->name.$separator.$parentsPath;
                 }
@@ -141,7 +141,7 @@ class Category
         
         $children = [];
         foreach($this->categoriesArray as $categoryId => $category) {
-            if($id=='null' || in_array($id,$category['parents'])) {
+            if($id=='null' || in_array($id, $category['parents'])) {
                 $children[] = $categoryId;
             }
         }

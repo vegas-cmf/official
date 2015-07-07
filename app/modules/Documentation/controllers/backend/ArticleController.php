@@ -34,8 +34,6 @@ class ArticleController extends CrudAbstract
         $article = \Documentation\Models\Article::findById($id);
         $this->view->article = $article;
 
-        $this->initializeScaffolding();
-
         $paginator = (new Mongo([
             'db' => $this->mongo,
             'modelName' => 'Documentation\Models\Article',
@@ -59,7 +57,7 @@ class ArticleController extends CrudAbstract
     {
         $this->view->setLayout('editor');
         if(!empty($id)) {
-            $article = $this->serviceManager->getService('documentation:article')->getArticle($id);
+            $article = $this->serviceManager->getService('documentation:article')->retrieveById($id);
         }
         $this->view->article = $article;
         if (!$article) {

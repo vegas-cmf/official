@@ -17,13 +17,13 @@ use Documentation\Models\Version as VersionModel;
 
 class Version
 {    
-    public function getObject($id)
+    public function retrieveById($id)
     {        
         $version = VersionModel::findById($id);
         return $version;
     }
     
-    public function getObjectBySlug($slug)
+    public function retrieveBySlug($slug)
     {
         $version = VersionModel::findFirst([['slug' => trim($slug)]]);
         return $version;

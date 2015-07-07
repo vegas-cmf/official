@@ -30,7 +30,7 @@ class Article extends \Vegas\Forms\Form
         $versions = $this->serviceManager->get('documentation:version')->getAll();
         foreach($versions as $id => $versionId) {
             $field = new Select('version['.$id.']');
-            $field->setLabel($this->i18n->_('Concerns ver. '.$versionId));
+            $field->setLabel($this->i18n->_('Concerns ver. ').$versionId);
             $field->setOptions(['0' => $this->i18n->_('No'),'1' => $this->i18n->_('Yes')]);
             $field->setAttribute('name', 'version['.$id.']');
             $this->add($field);

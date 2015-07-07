@@ -42,7 +42,7 @@ class Article implements InjectionAwareInterface
     
     public function updateContent($id, $content, $contentRendered, $archival=false)
     {
-        $article = $this->getArticle($id);
+        $article = $this->retrieveById($id);
         if(!empty($article)) {
             $article->content = $content;
             $article->content_rendered = $contentRendered;
@@ -56,7 +56,7 @@ class Article implements InjectionAwareInterface
     
     public function updatePosition($id, $position)
     {
-        $article = $this->getArticle($id);
+        $article = $this->retrieveById($id);
         if(!empty($article)) {
             $article->position = $position;
             return $article->save();
@@ -64,15 +64,15 @@ class Article implements InjectionAwareInterface
         return false;
     }
     
-    public function getArticle($id)
+    public function retrieveById($id)
     {        
         $object = ArticleModel::findById($id);
         return $object;
     }
     
-    public function getArticleBySlug($versionSlug,$categorySlug,$articleSlug,$onlyPublished=true)
+    public function retrieveBySlug($versionSlug, $categorySlug, $articleSlug, $onlyPublished=true)
     {
-        $version = $this->getServiceVersion()->getObjectBySlug($versionSlug);
+        $version = $this->getServiceVersion()->retrieveBySlug($versionSlug);
         if(!$version) {
             return null;
         }
@@ -91,7 +91,7 @@ class Article implements InjectionAwareInterface
         
         if($articles) {
             foreach($articles as $article) {
-                $category = $this->getServiceCategory()->getObject($article->category);
+                $category = $this->getServiceCategory()->retrieveById($article->category);
                 if($category->slug == $categorySlug) {
                     return $article;
                 }
@@ -100,15 +100,15 @@ class Article implements InjectionAwareInterface
         return null;
     }
     
-    public function getFirstArticle($versionSlug=null,$categorySlug=null)
+    public function retrieveFirst($versionSlug=null, $categorySlug=null)
     {
-        $version = $this->getServiceVersion()->getObjectBySlug($versionSlug);
-        $category = $this->getServiceCategory()->getObjectBySlug($categorySlug);
+        $version = $this->getServiceVersion()->retrieveBySlug($versionSlug);
+        $category = $this->getServiceCategory()->retrieveBySlug($categorySlug);
                 
         if($version) {
-            $articles = $this->getAllArticles(true, (string) $version->_id);
+            $articles = $this->retrieveAll(true, (string) $version->_id);
         } else {
-            $articles = $this->getAllArticles(true,'all');
+            $articles = $this->retrieveAll(true,'all');
         }
         
         if(!$category) {
@@ -127,7 +127,7 @@ class Article implements InjectionAwareInterface
         return null;
     }
     
-    public function getAllArticles($onlyPublished = true, $version='all')
+    public function retrieveAll($onlyPublished = true, $version='all')
     {
         $conditions = [];
         $articlesArray = [];
@@ -153,14 +153,14 @@ class Article implements InjectionAwareInterface
         return $articlesArray;
     }
     
-    public function countArticles($categoryId, $articles)
+    public function countInCategory($categoryId, $articles)
     {
         $numberOfArticles = 0;
         $categoryChildrenIds = $this->getServiceCategory()->getChildren($categoryId);
         
         foreach($articles as $groupId => $articleGroup) {
             
-            if($groupId == $categoryId || in_array($groupId,$categoryChildrenIds)) {
+            if($groupId == $categoryId || in_array($groupId, $categoryChildrenIds)) {
                 $numberOfArticles += count($articleGroup);
             }
         }
@@ -173,7 +173,7 @@ class Article implements InjectionAwareInterface
         $query = htmlentities($query);
         $version = null;
         if($versionSlug!='') {
-            $version = $this->getServiceVersion()->getObjectBySlug($versionSlug);
+            $version = $this->getServiceVersion()->retrieveBySlug($versionSlug);
         }
         //find categories
         $categories = $this->getServiceCategory()->search($query);
@@ -209,7 +209,7 @@ class Article implements InjectionAwareInterface
         }
         
         foreach(array_keys($articleVersion) as $key) {
-            $version = $this->getServiceVersion()->getObject($key);
+            $version = $this->getServiceVersion()->retrieveById($key);
             if($version) {
                 $versions[] = $version;
             }
@@ -225,7 +225,7 @@ class Article implements InjectionAwareInterface
             $versionId = $connectedVersions[count($connectedVersions)-1];
             
             if(isset($versionId)) {
-                $version = $this->getServiceVersion()->getObject($versionId);
+                $version = $this->getServiceVersion()->retrieveById($versionId);
             }
             if($version) {
                 return $version->slug;

@@ -39,13 +39,13 @@
     </form>
     {% for versionRecordId, versionId in versions %}
         {% if versionSlug is empty or versionSlug == versionId %}
-            {% set articles = articleService.getAllArticles(true,versionRecordId) %}
+            {% set articles = articleService.retrieveAll(true,versionRecordId) %}
             <h4>{{ i18n._('Vegas version') }} {{ versionId }}</h4>
             [ <a href="{{ url.get(['for': 'documentation/pdf', 'params': versionId]) }}">download PDF</a> ]
             {% for categoryId, categoryArray in categories %}
                 {% set numberOfParents = (categoryArray['parents'] | length)-1 %}
                 
-                {% if articleService.countArticles(categoryId,articles) %}
+                {% if articleService.countInCategory(categoryId,articles) %}
                     <div class="row">
                         <div class="col-lg-{{12-numberOfParents}} col-lg-offset-{{numberOfParents}}">
                             <h5>{{categoryArray['name']}}</h5>
@@ -74,7 +74,7 @@
         {% if searchResults %}
             <ul>
             {% for article in searchResults %}
-                {% set category = categoryService.getObject(article.category) %}
+                {% set category = categoryService.retrieveById(article.category) %}
                 {% if versionSlug != '' %}
                     {% set articleVersionSlug = versionSlug %}
                 {% else %}

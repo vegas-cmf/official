@@ -32,8 +32,6 @@ class CategoryController extends CrudAbstract
     
     public function indexAction()
     {
-        $this->initializeScaffolding();
-
         $model = new CategoryModel();
         $categories = $model->find(['sort'=>['position' => 1]]);
 
