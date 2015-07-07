@@ -17,10 +17,12 @@
     <div class="row">
         <div class="col-md-12">
             {% set articles = articleService.getAll(false) %}
+            {% set categories = categoryService.getAll() %}
             {% if(articles) %}
-                {% for category, cArticles in articles %}
-                <h4>{{ categoryService.getPath(category) }}</h4>
-                <table class="table table-hover sortable" data-category="{{category}}">
+                {% for categoryId, categoryArray in categories %}
+                {% if articles[categoryId] is defined and (articles[categoryId] | length)> 0 %}
+                <h4>{{ categoryService.getPath(categoryId) }}</h4>
+                <table class="table table-hover sortable" data-category="{{categoryId}}">
                     <thead>
                                 <tr>
                                     <th>{{ i18n._('Title') }}</th>
@@ -30,7 +32,7 @@
                                 </tr>
                     </thead>
                     <tbody>
-                    {% for key, item in cArticles %}
+                    {% for key, item in articles[categoryId] %}
                         <tr data-article="{{item.getId()}}" class="{% if item.published %}published{%else%}not-published{% endif %}">
                             <td>{{ item.title }}</td>
                                 <td>{{ date('d-m-Y', item.created_at) }}</td>
@@ -49,6 +51,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                {% endif %}
                 {% endfor %}
             {% else %}
                 <p>{{ i18n._("No articles found.")}}</p>

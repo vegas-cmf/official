@@ -37,14 +37,15 @@
                 {% endif %}
             {% endfor %}
             <hr/>   
-            {% for categoryId, articleGroup in articles %}
-                {% set category = categoryService.retrieveById(categoryId) %}
-                {% if (articleGroup | length)> 0  %}<h2>{{category.name}}</h2>{% endif %}
-                {% for article in articleGroup %}
-                    <h3>{{article.title}}</h3>
-                    <hr/>
-                    <div class="markdown-view">{{article.content_rendered}}</div>
-                {% endfor %}
+            {% for categoryId, categoryArray in categories %}
+                {% if articles[categoryId] is defined and (articles[categoryId] | length)> 0 %}
+                    <h2>{{categoryArray['name']}}</h2>
+                    {% for article in articles[categoryId] %}
+                        <h3>{{article.title}}</h3>
+                        <hr/>
+                        <div class="markdown-view">{{article.content_rendered}}</div>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </div>
     </body>

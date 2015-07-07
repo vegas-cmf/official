@@ -40,6 +40,9 @@ class Pdf extends \Vegas\DI\Service\ComponentAbstract
         }
         $content = $this->render($params);
         
+        define('_MPDF_TTFONTDATAPATH', APP_ROOT . '/public/mpdf/ttfontdata/');
+        define('_MPDF_TEMP_PATH', APP_ROOT . '/public/mpdf/tmp/');
+        
         set_error_handler('\\Documentation\\Services\\Exception\\mPDFErrorHandler::error');
         $mpdf = new \mPDF('utf-8', $params['format'], $params['fontSize']);
         $mpdf->SetTitle($params['title']);
