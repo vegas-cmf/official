@@ -27,21 +27,21 @@ How to setup page
     cp app/config/config.sample.php app/config/config.php
     ```
 
-3a. Publish default forms and media assets by running this command:
+3. Publish default forms and media assets by running this command:
     ```
     php cli/cli.php vegas:assets publish
 
     ```
     **Problem?** Some of files are already included in this project's public/assets directory so don't worry about *File already exists.* notices.
 
-3b. Install assets defined in bower.json
+4. Install assets defined in bower.json
     ```
     cd public/assets
     bower install
     ```
-4. Create default user:
+5. Create default user:
     ```
     php cli/cli.php app:user:user create -e=user@vegasdemo.com -p=pa55w0rd -n="Vegas User"
     ```
 
-5. For virtual host configuration check: [http://vegas-cmf.github.io/1.0/getting-started.html](http://vegas-cmf.github.io/1.0/getting-started.html)
+6. For virtual host configuration check: [http://vegas-cmf.github.io/1.0/getting-started.html](http://vegas-cmf.github.io/1.0/getting-started.html)
