@@ -39,7 +39,7 @@
     </form>
     {% for versionRecordId, versionId in versions %}
         {% if versionSlug is empty or versionSlug == versionId %}
-            {% set articles = articleService.retrieveAll(true,versionRecordId) %}
+            {% set articles = articleService.getAll(true,versionRecordId) %}
             <h4>{{ i18n._('Vegas version') }} {{ versionId }}</h4>
             [ <a href="{{ url.get(['for': 'documentation/pdf', 'params': versionId]) }}">download PDF</a> ]
             {% for categoryId, categoryArray in categories %}

@@ -18,7 +18,7 @@
             <hr/> 
             <h2>Table of Contents</h2>
             {% set categories  = categoryService.getAll('array') %}
-            {% set articles = articleService.retrieveAll(true,version._id) %}
+            {% set articles = articleService.getAll(true,version._id) %}
             {% for categoryId, categoryArray in categories %}
                 {% set numberOfParents = (categoryArray['parents'] | length)-1 %}
                 {% if articleService.countInCategory(categoryId,articles) %}

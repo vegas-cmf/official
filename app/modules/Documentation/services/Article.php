@@ -106,9 +106,9 @@ class Article implements InjectionAwareInterface
         $category = $this->getServiceCategory()->retrieveBySlug($categorySlug);
                 
         if($version) {
-            $articles = $this->retrieveAll(true, (string) $version->_id);
+            $articles = $this->getAll(true, (string) $version->_id);
         } else {
-            $articles = $this->retrieveAll(true,'all');
+            $articles = $this->getAll(true,'all');
         }
         
         if(!$category) {
@@ -127,7 +127,7 @@ class Article implements InjectionAwareInterface
         return null;
     }
     
-    public function retrieveAll($onlyPublished = true, $version='all')
+    public function getAll($onlyPublished = true, $version='all')
     {
         $conditions = [];
         $articlesArray = [];

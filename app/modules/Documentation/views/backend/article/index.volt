@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            {% set articles = articleService.retrieveAll(false) %}
+            {% set articles = articleService.getAll(false) %}
             {% if(articles) %}
                 {% for category, cArticles in articles %}
                 <h4>{{ categoryService.getPath(category) }}</h4>
