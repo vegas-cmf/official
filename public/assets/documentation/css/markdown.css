@@ -78,7 +78,3 @@
 .markdown-view pre code {
     display: block;
 }
-
-.markdown-view pre code span{
-    display: inline-block;
-}
